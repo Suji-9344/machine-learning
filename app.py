@@ -7,16 +7,14 @@ try:
     with open("salary_data.pkl", "rb") as file:
         model = pickle.load(file)
 except FileNotFoundError:
-    st.error("Model file 'salary_data.pkl' not found. Please check the path.")
+    st.error("Model file 'salary_data.pkl' not found.")
     st.stop()
 except Exception as e:
     st.error(f"Error loading model: {e}")
     st.stop()
 
-# App title
 st.title("Salary Prediction App")
 
-# Input from user
 years_of_experience = st.number_input(
     "Enter Years of Experience",
     min_value=0.0,
@@ -24,10 +22,8 @@ years_of_experience = st.number_input(
     step=0.1
 )
 
-# Prediction button
 if st.button("Predict Salary"):
     try:
-        # Ensure input is valid
         if years_of_experience < 0:
             st.warning("Years of experience cannot be negative.")
         else:
